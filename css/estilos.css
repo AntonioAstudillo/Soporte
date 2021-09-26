@@ -1,0 +1,33 @@
+a{
+   text-decoration: none;
+   color:white;
+}
+
+a:hover{
+   color:white;
+   text-decoration: none;
+}
+
+td,th{
+   text-align: center;
+}
+
+.heading{
+   border-bottom:  1px solid #2F3061;
+   padding-bottom: 9px;
+   position: relative;
+}
+
+.heading span{
+   background: #343434 none repeat scroll 0 0;
+   bottom: -2px;
+   height: 3px;
+   position: absolute;
+   width: 136px;
+   margin-left: -222px;
+
+}
+
+.heading a{
+   color: black;
+}
