@@ -1,4 +1,14 @@
-<?php require_once 'vistas/cabecera.php'; ?>
+<?php
+
+  require_once 'vistas/cabecera.php';
+  require_once 'conexion/Conexion.php';
+
+  $objetoCon = new Conexion();
+
+  $reportes = $objetoCon->mostrarReportes();
+
+
+?>
 <body>
    <header class="bg-dark p-3">
       <div class="">
@@ -25,15 +35,18 @@
                </tr>
             </thead>
             <tbody>
-               <tr>
-                  <th scope="row">4852</th>
-                  <td>Ya88a1as</td>
-                  <td>H</td>
-                  <td>Activo</td>
-                  <td><button class="btn btn-primary" type="button" name="button"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                  <button class="btn btn-warning" type="button" name="button"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                  <button class="btn btn-danger" type="button" name="button"><i class="fa fa-trash-o" aria-hidden="true"></i></button> </td>
-               </tr>
+               <?php while($reporte = $reportes->fetch_assoc()): ?>
+                  <tr>
+                     <th> <?php echo $reporte['numReporte'];  ?> </th>
+                     <th> <?php echo $reporte['idEquipo'];  ?> </th>
+                     <th> <?php echo $reporte['edificio'];  ?> </th>
+                     <th> <?php echo $reporte['estado'];  ?> </th>
+
+                     <td><button class="btn btn-primary" type="button" value="<?php echo $reporte['id']; ?>"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                     <button class="btn btn-warning" type="button"  value="<?php echo $reporte['id']; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                     <button class="btn btn-danger" type="button"  value="<?php echo $reporte['id']; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></button> </td>
+                  </tr>
+               <?php endwhile; ?>
             </tbody>
 
          </table>
