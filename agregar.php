@@ -19,7 +19,7 @@ clearstatcache();
             <div class="col-md-12">
                <h4 class="heading"><a href="index.php"><strong>Registrando</strong>Reporte<span></span></a></h4>
                <div class="container mt-4">
-                  <form class="" action="modelos/agregar.php" method="post">
+                  <form class="" action="modelos/agregar.php" method="post" autocomplete="off">
                      <div class="row">
                         <div class="col-6">
                            <label for="">Número de Reporte</label>
@@ -59,6 +59,21 @@ clearstatcache();
                               <option value="0">Cancelado</option>
                            </select>
 
+                        </div>
+                     </div>
+
+                     <div class="row mt-3">
+                        <div class="col-4">
+                           <label for="nombre">Nombre</label>
+                           <input type="text" class="form-control" name="nombre" placeholder="Ingrese nombre">
+                        </div>
+                        <div class="col-4">
+                           <label for="nombre">Apellido Paterno</label>
+                           <input type="text" class="form-control" name="apellidoP" placeholder="Ingrese apellido paterno">
+                        </div>
+                        <div class="col-4">
+                           <label for="nombre">Apellido Materno</label>
+                           <input type="text" class="form-control" name="apellidoM" placeholder="Ingrese apellido materno">
                         </div>
                      </div>
 
