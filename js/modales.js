@@ -6,10 +6,12 @@ function main(){
 
    let etiquetaVista = document.getElementsByClassName('fa-eye');
    let etiquetaEditar = document.getElementsByClassName('fa-pencil');
-   let guardar = document.getElementById('guardarCambios');
+   let eliminar = document.getElementsByClassName('fa-trash-o');
+   let guardar = document.getElementById('guardarCambios'); //boton del modal de editar
 
    iniciarEventoBoton(etiquetaVista,1);
    iniciarEventoBoton(etiquetaEditar,2);
+   iniciarEventoBoton(eliminar,4);
    guardar.addEventListener('click',guardarCambios);
 
 }
@@ -44,7 +46,7 @@ function hacerPeticion(valor , bandera ){
    peticion = new XMLHttpRequest();
 
    switch(bandera){
-      case 1:
+      case 1://llenamos modal de vista
          peticion.onreadystatechange = function(){
             llenarModal(1);
          };
@@ -53,7 +55,7 @@ function hacerPeticion(valor , bandera ){
          peticion.open('GET','ajax/vista.php?id='+valor);
          peticion.send();
       break;
-      case 2:
+      case 2://llenamos modal de edición
          peticion.onreadystatechange = function(){
             llenarModal(2);
          };
@@ -62,27 +64,44 @@ function hacerPeticion(valor , bandera ){
          peticion.open('POST','ajax/vista.php?id='+valor);
          peticion.send();
       break;
-      case 3:
+      case 3://editamos cambios
          peticion.onreadystatechange= function(){
             editarCambios();
          }
+
          peticion.open('POST','ajax/editar.php?id='+valor);
          peticion.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
          peticion.send(prepararDatos());
+      break;
+      case 4:
+         peticion.onreadystatechange = function(){
+            eliminarRegistro();
+         }
 
+         peticion.open('GET','ajax/eliminar.php?id='+valor);
+         peticion.send();
       break;
    }
 
 }
 
+function eliminarRegistro(){
+  if(peticion.readyState == 4 && peticion.status == 200){
+     let respuesta = peticion.responseText;
 
+     if(respuesta == '1'){
+        bootbox.alert("El reporte se elimino correctamente",function(){
+           location.reload();
+        });
+     }
+ }
+}
 
 function editarCambios(){
-   let padre = document.getElementById
+
    if(peticion.readyState == 4 && peticion.status == 200){
       let respuesta =  peticion.responseText;
 
-      console.log(respuesta);
 
       if(respuesta == '1'){
          document.getElementById('modalEditar').style.display = 'none';

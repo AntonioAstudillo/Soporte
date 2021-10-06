@@ -53,8 +53,9 @@ $reportes = $objetoCon->mostrarReportes();
                         <td>
                            <button id="btnVista" data-toggle="modal" data-target="#modalVista" class="btn btn-primary" type="button" value="<?php echo $reporte['id']; ?>"><i class="fa fa-eye" aria-hidden="true" value="<?php echo $reporte['id']; ?>"></i></button>
                            <button id="btnEditar" data-toggle="modal" data-target="#modalEditar"  class="btn btn-warning" type="button"  value="<?php echo $reporte['id']; ?>"><i  value="<?php echo $reporte['id']; ?>" class="fa fa-pencil" aria-hidden="true"></i></button>
-                           <button id="btnEliminar" class="btn btn-danger" type="button"  value="<?php echo $reporte['id']; ?>"><i value="<?php echo $reporte['id']; ?>" class="fa fa-trash-o" aria-hidden="true"></i></button> </td>
-                        </tr>
+                           <button id="btnEliminar" class="btn btn-danger" type="button"  value="<?php echo $reporte['id']; ?>"><i value="<?php echo $reporte['id']; ?>" class="fa fa-trash-o" aria-hidden="true"></i></button>
+                        </td>
+                     </tr>
                      <?php endwhile; ?>
                   <?php else: ?>
                   <?php endif; ?>

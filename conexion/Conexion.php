@@ -95,6 +95,35 @@ class Conexion{
 
    }
 
+   public function eliminarReporte($id){
+      $consulta = "SELECT idPersona  FROM reportes WHERE id = '$id';";
+      $bandera = false;
+
+      $respuesta = $this->conexion->query($consulta);
+
+      if($respuesta && $respuesta->num_rows > 0){
+         //hacemos peticion fetch_assoc
+         $reporte = $respuesta->fetch_assoc();
+         $idPersona = $reporte['idPersona'];
+
+         $consulta = "DELETE FROM reportes WHERE id = '$id';";
+
+         $respuesta = $this->conexion->query($consulta);
+
+         if($respuesta){
+            $consulta = "DELETE FROM persona WHERE id = '$idPersona';";
+
+            $respuesta = $this->conexion->query($consulta);
+
+            if($respuesta){
+               $bandera = true;
+            }
+
+         }
+      }
+
+      return $bandera;
+   }
 }
 
 
